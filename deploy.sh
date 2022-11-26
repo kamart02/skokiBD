@@ -9,7 +9,7 @@ command="""
 eval \$(ssh-agent -s);
 ssh-add $deployKey;
 cd ~/public_html/skokiBD;
-git pull --rebase origin deploy;
+git reset --hard origin/deploy;
 """
 
 echo "$command"
