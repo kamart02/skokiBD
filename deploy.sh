@@ -6,8 +6,10 @@ url=$(<secrets/url)
 username=$(<secrets/username)
 
 command="""
+eval \$(ssh-agent -s);
+ssh-add $deployKey;
 cd ~/public_html/skokiBD;
-git pull origin deploy
+git pull --rebase origin deploy;
 """
 
 echo "$command"
