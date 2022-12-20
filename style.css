@@ -1,0 +1,38 @@
+.panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.element {
+    text-decoration: none;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    border: 5px solid lightblue;
+    border-radius: 5px;
+}
+
+.element:hover {
+    background-color: lightblue;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
