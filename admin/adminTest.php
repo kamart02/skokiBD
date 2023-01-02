@@ -5,6 +5,6 @@
             header('Location: /~ak438500/skokiBD/admin/noAdminError.php');
         }
     } else {
-        header('Location: /~ak438500/skokiBD/login/login.php?next=' . '/skokiBD/admin');
+        header('Location: /~ak438500/skokiBD/login/login.php?next=' . '/~ak438500/skokiBD/admin');
     }
 ?>  
