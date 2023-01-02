@@ -14,9 +14,9 @@ CREATE TABLE Seria (
 CREATE TABLE Konkurs (
     idKonkursu SERIAL PRIMARY KEY,
     seriaKwalifikacyjna INT REFERENCES Seria,
-    seriaPierwsza INT REFERENCES Seria NOT NULL,
-    seriaDruga INT REFERENCES Seria NOT NULL,
-    opis VARCHAR(128) NOT NULL,
+    seriaPierwsza INT REFERENCES Seria,
+    seriaDruga INT REFERENCES Seria,
+    nazwa VARCHAR(64) NOT NULL,
     lokalizacja VARCHAR(64) NOT NULL,
     dataWydarzenia DATE NOT NULL,
     zamknieteZgloszenia BOOLEAN NOT NULL

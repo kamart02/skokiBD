@@ -51,11 +51,11 @@
                     echo "<p class='red'>Lokalizacja konkursu musi być napisem</p>";
                     $validationPassed = false;
                 } else {
-                    $nazwa = trim(htmlspecialchars($_POST['lokalizacja']));
-                    if (strlen($nazwa) <= 0) {
+                    $lokalizacja = trim(htmlspecialchars($_POST['lokalizacja']));
+                    if (strlen($lokalizacja) <= 0) {
                         echo "<p class='red'>Lokalizacja konkursu nie może być pusta</p>";
                         $validationPassed = false;
-                    } else if (strlen($nazwa) > 64) {
+                    } else if (strlen($lokalizacja) > 64) {
                         echo "<p class='red'>Lokalizacja konkursu nie może być dłuższa niż 64 znaki</p>";
                         $validationPassed = false;
                     }
@@ -68,7 +68,14 @@
                 }
 
                 if ($validationPassed == true) {
-                    
+                    $database = pg_connect("host=lkdb dbname=bd user=ak438500 password=suffer-exess-affecting");
+                    if ($database == false) {
+                        die();
+                    }
+
+                    $querry = pg_query_params($database, "INSERT INTO konkurs(nazwa, lokalizacja, datawydarzenia, zamknietezgloszenia) VALUES ($1, $2, $3, false)", array($nazwa, $lokalizacja, date('Y-m-d', $data)));
+
+                    pg_close($database);
                 }
             }
         ?>

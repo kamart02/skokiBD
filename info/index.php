@@ -14,7 +14,7 @@
 <div class="content">
     <h1>Informacje związane z rozwiązaniem zadania</h1>
     <h2>Wykres ERD</h2>
-    <img id="ERDModel" src="/skokiBD/info/SkokiERD.svg" alt="Zdjęcie wykresu ERD">
+    <img id="ERDModel" src="/~ak438500/skokiBD/info/SkokiERD.svg" alt="Zdjęcie wykresu ERD">
     <h2>Model logiczny</h2>
     <pre><code><?php include('../sql/dbCreate.sql'); ?></code></pre>
 </div>
