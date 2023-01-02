@@ -3,19 +3,19 @@
 <body>
     <div class="nav">
         <div class="box left">
-            <a class="brand" href="/skokiBD/info">
+            <a class="brand" href="/~ak438500/skokiBD/info">
                 <div class="brand-text">SkokiBD</div>
             </a>
-            <a class="element" href="/skokiBD/info">Informacje</a>
-            <a class="element" href="../pKibica.html">Panel kibica</a>
-            <a class="element" href="/skokiBD/admin">Panel administracyjny</a>
+            <a class="element" href="/~ak438500/skokiBD/info">Informacje</a>
+            <a class="element" href="/~ak438500../pKibica.html">Panel kibica</a>
+            <a class="element" href="/~ak438500/skokiBD/admin">Panel administracyjny</a>
         </div>
         <div class="box right flex-center">
             <?php
                 session_start();
                 if (isset($_SESSION['loggedIn']) === true) {
                     echo "<p class = \"flex-self-center\">Zalogowany jako: " .  $_SESSION['username'] . "</p>";
-                    echo "<a href = \"/skokiBD/login/logout.php\" class = \"button-a\"><button class = \"href-button lightgreen\">Wyloguj</button></a>";
+                    echo "<a href = \"/~ak438500/skokiBD/login/logout.php\" class = \"button-a\"><button class = \"href-button lightgreen\">Wyloguj</button></a>";
                 }
             ?>
         </div>

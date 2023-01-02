@@ -2,9 +2,9 @@
     session_start();
     if (isset($_SESSION['loggedIn']) === true) {
         if (isset($_SESSION['admin']) === false) {
-            header('Location: /skokiBD/admin/noAdminError.php');
+            header('Location: /~ak438500/skokiBD/admin/noAdminError.php');
         }
     } else {
-        header('Location: /skokiBD/login/login.php?next=' . '/skokiBD/admin');
+        header('Location: /~ak438500/skokiBD/login/login.php?next=' . '/skokiBD/admin');
     }
 ?>  

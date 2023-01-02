@@ -3,7 +3,7 @@
 <?php 
     session_start();
     if ($_SESSION['loggedIn'] === true) {
-        header("Location: /skokiBD/login/noLoginError.php");
+        header("Location: /~ak438500/skokiBD/login/noLoginError.php");
     }
 ?>
 

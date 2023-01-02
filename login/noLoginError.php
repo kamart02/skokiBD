@@ -3,7 +3,7 @@
 <?php
     session_start();
     if ($_SESSION['loggedIn'] === true) {
-        header("Location: /skokiBD/info");
+        header("Location: /~ak438500/skokiBD/info");
     }
 ?>
 

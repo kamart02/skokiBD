@@ -10,6 +10,6 @@
     if (isset($_POST['next'])) {
         header("Location: " . $_POST['next']);
     } else {
-        header("Location: /skokiBD/info");
+        header("Location: /~ak438500/skokiBD/info");
     }
 ?>

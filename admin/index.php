@@ -16,7 +16,7 @@
             <th class="width25" ></th>
         </tr>
     </table>
-    <a href="/skokiBD/admin/nowyKonkurs.php" class="button-a"><button class="newContest">Nowy konkurs</button></a>
+    <a href="/~ak438500/skokiBD/admin/nowyKonkurs.php" class="button-a"><button class="newContest">Nowy konkurs</button></a>
 </div>
 
 <?php include('../template/bottom.php'); ?>
