@@ -1,5 +1,5 @@
 <!DOCTYPE html>
 
 <?php
-    header("Location: skokiBD/info");
+    header("Location: /skokiBD/info");
 ?>
