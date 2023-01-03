@@ -75,6 +75,10 @@
 
                     $querry = pg_query_params($database, "INSERT INTO konkurs(nazwa, lokalizacja, datawydarzenia, zamknietezgloszenia) VALUES ($1, $2, $3, false)", array($nazwa, $lokalizacja, date('Y-m-d', $data)));
 
+                    if ($querry == false) {
+                        die("Błąd dodania konkursu");
+                    }
+
                     pg_close($database);
 
                     header("Location: /~ak438500/skokiBD/admin");
