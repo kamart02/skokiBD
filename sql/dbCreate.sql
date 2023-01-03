@@ -49,3 +49,14 @@ CREATE TABLE Skok (
     ocena NUMERIC(10, 1),
     dyskwalifikacja BOOLEAN
 );
+
+CREATE FUNCTION istniejeKonkurs(id integer) RETURNS boolean AS $$
+    BEGIN
+        IF EXISTS (SELECT * FROM Konkurs WHERE idKonkursu = id) THEN
+            RETURN true;
+        ELSE
+
+            RETURN false;
+        END IF;
+    END;
+$$ LANGUAGE plpgsql;

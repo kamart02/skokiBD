@@ -13,6 +13,11 @@
 
 <div class="content">
     <h1>Informacje związane z rozwiązaniem zadania</h1>
+    <pre>
+        Częściowo działający panel administracyjny.
+        Można dodawać zawody ale brakuje jeszcze kwot startowych.
+        Konto administracjyje ma login admin. Hasło dowolne.
+    </pre>
     <h2>Wykres ERD</h2>
     <img id="ERDModel" src="/~ak438500/skokiBD/info/SkokiERD.svg" alt="Zdjęcie wykresu ERD">
     <h2>Model logiczny</h2>

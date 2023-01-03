@@ -70,12 +70,14 @@
                 if ($validationPassed == true) {
                     $database = pg_connect("host=lkdb dbname=bd user=ak438500 password=suffer-exess-affecting");
                     if ($database == false) {
-                        die();
+                        die("Database error");
                     }
 
                     $querry = pg_query_params($database, "INSERT INTO konkurs(nazwa, lokalizacja, datawydarzenia, zamknietezgloszenia) VALUES ($1, $2, $3, false)", array($nazwa, $lokalizacja, date('Y-m-d', $data)));
 
                     pg_close($database);
+
+                    header("Location: /~ak438500/skokiBD/admin");
                 }
             }
         ?>
