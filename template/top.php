@@ -7,8 +7,10 @@
                 <div class="brand-text">SkokiBD</div>
             </a>
             <a class="element" href="/~ak438500/skokiBD/info">Informacje</a>
-            <a class="element" href="/~ak438500../pKibica.html">Panel kibica</a>
+            <a class="element" href="/~ak438500/skokiBD/kibic">Panel kibica</a>
             <a class="element" href="/~ak438500/skokiBD/admin">Panel administracyjny</a>
+            <a class="element" href="/~ak438500/skokiBD/zawodnik">Panel zawodnika</a>
+            <a class="element" href="/~ak438500/skokiBD/zawodnik/rejestracja.php?next=/~ak438500/skokiBD/zawodnik">Rejestracja zawodnika</a>
         </div>
         <div class="box right flex-center">
             <?php

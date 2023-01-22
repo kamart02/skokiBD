@@ -72,6 +72,21 @@ body {
     justify-content: center !important;
 }
 
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.flex-wrapone {
+    flex-basis: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .flex-right {
     display: flex;
     justify-content: flex-end !important;
@@ -196,4 +211,8 @@ body {
     max-width: 100%;
     height: auto;
     object-fit: scale-down;
+}
+
+td {
+    text-align: center;
 }

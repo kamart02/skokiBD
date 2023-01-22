@@ -2,7 +2,7 @@
 
 <?php 
     session_start();
-    if ($_SESSION['loggedIn'] === true) {
+    if (isset($_SESSION['loggedIn']) === true) {
         header("Location: /~ak438500/skokiBD/login/noLoginError.php");
     }
 ?>
@@ -16,7 +16,7 @@
     <div class="content flex-center">
         <div class="input-box">
             <h1>Logowanie użytkownika</h1>
-            <form method="POST" action="authenticate.php">
+            <form method="POST">
                 <ul class="input-list">
                     <li>
                         <label for="username">Login</label>
@@ -36,6 +36,49 @@
                     }
                 ?>
             </form>
+            <?php 
+                include('../sql/dbLog.php');
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $database = pg_connect($DBLOGINSTR);
+                    if ($database == false) {
+                        die("Database error");
+                    }
+                    $querry = pg_query_params($database, "SELECT * FROM uzytkownik WHERE nazwa = $1", array($_POST['username']));
+                    if ($querry == false) {
+                        die("Database error");
+                    }
+                    password_hash("123", PASSWORD_DEFAULT);
+
+                    if (pg_num_rows($querry) == 0) {
+                        echo "<p class='red'>Niepoprawny login lub hasło</p>";
+                        return;
+                    } else {
+
+                        $row = pg_fetch_array($querry);
+                        if (password_verify($_POST['password'], $row['hash_hasla']) === false) {
+                            echo "<p class='red'>Niepoprawny login lub hasło</p>";
+                            return;
+                        }
+
+                        $_SESSION['loggedIn'] = true;
+                        $_SESSION['username'] = $row['nazwa'];
+
+                        if ($row['administrator'] == "t") {
+                            $_SESSION['admin'] = true;
+                        } else {
+                            $uczestnikQuerry = pg_query_params($database, "SELECT iduczestnika FROM uczestnik WHERE nazwa=$1", array($_SESSION['username']));
+                            $_SESSION['iduczestnika'] = pg_fetch_array($uczestnikQuerry)['iduczestnika'];
+                            error_log($_SESSION['iduczestnika']);
+                        }
+
+                        if (isset($_POST['next'])) {
+                            header("Location: " . $_POST['next']);
+                        } else {
+                            header("Location: /~ak438500/skokiBD/info");
+                        }
+                    }
+                }
+            ?>
         </div>
     </div>
 

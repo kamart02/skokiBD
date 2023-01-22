@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php include('adminTest.php'); ?>
+<?php include('../sql/dbLog.php'); ?>
 
 <head>
     <?php include('../template/head.php'); ?>
@@ -68,12 +69,12 @@
                 }
 
                 if ($validationPassed == true) {
-                    $database = pg_connect("host=lkdb dbname=bd user=ak438500 password=suffer-exess-affecting");
+                    $database = pg_connect($DBLOGINSTR);
                     if ($database == false) {
                         die("Database error");
                     }
 
-                    $querry = pg_query_params($database, "INSERT INTO konkurs(nazwa, lokalizacja, datawydarzenia, zamknietezgloszenia) VALUES ($1, $2, $3, false)", array($nazwa, $lokalizacja, date('Y-m-d', $data)));
+                    $querry = pg_query_params($database, "INSERT INTO konkurs(nazwa, lokalizacja, datawydarzenia, zamknietezgloszenia) VALUES ($1, $2, $3, true)", array($nazwa, $lokalizacja, date('Y-m-d', $data)));
 
                     if ($querry == false) {
                         die("Błąd dodania konkursu");

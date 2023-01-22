@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    if (isset($_SESSION['loggedIn']) === false) {
+    if (isset($_SESSION['admin']) === false) {
         header("Location: /~ak438500/skokiBD/info");
     }
 ?>
@@ -14,7 +14,7 @@
 <?php include('../template/top.php'); ?>
 
     <div class="content red flex-center">
-        <h1>Jesteś już zalogowany, przed zmianą użytkownika należy się wylogować.</h1>
+        <h1>Tylko zawodnicy mogą kożystać z tego panelu</h1>
     </div>
 
 

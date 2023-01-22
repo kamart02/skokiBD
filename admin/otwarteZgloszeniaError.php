@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    if (isset($_SESSION['loggedIn']) === false) {
+    if (isset($_SESSION['admin']) === false) {
         header("Location: /~ak438500/skokiBD/info");
     }
 ?>
@@ -14,7 +14,10 @@
 <?php include('../template/top.php'); ?>
 
     <div class="content red flex-center">
-        <h1>Jesteś już zalogowany, przed zmianą użytkownika należy się wylogować.</h1>
+        <h1>Nie można wykonać tej akcji gdy zgłoszenia są otwarte</h1>
+    </div>
+    <div class="flex-center">
+        <a href="<?php echo $_GET['next']; ?>"><button>Wróć</button></a>
     </div>
 
 

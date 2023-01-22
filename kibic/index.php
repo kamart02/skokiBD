@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-<?php include('adminTest.php'); ?>
 <?php include('../sql/dbLog.php'); ?>
 
 <head>
@@ -60,28 +59,8 @@
                     echo "<td class=\"width20\">" . $row['datawydarzenia'] . "</td>";
                     echo "<td class=\"width60 flex-space-around\">";
 
-                    if (pg_field_is_null($querry, $i, 'seriakwalifikacyjna') == 1 && pg_field_is_null($querry, $i, 'seriapierwsza') == 1 && pg_field_is_null($querry, $i, 'seriadruga') == 1) {
-                        if ($row['zamknietezgloszenia'] == "f") {
-                        echo "<form method=\"post\">
-                                <button type=\"submit\" class=\"lightred\">Zamknij zgłoszenia</button>
-                                <input type=\"hidden\" name=\"idkonkursu\" value=" . $row['idkonkursu'] . "></form>";
-                        } else {
-                            echo "<form method=\"post\">
-                                <button type=\"submit\" class=\"lightgreen\">Otwórz zgłoszenia</button>
-                                <input type=\"hidden\" name=\"idkonkursu\" value=" . $row['idkonkursu'] . "></form>";
-                        }
-                        echo "<a href=\"/~ak438500/skokiBD/admin/kwoty.php?idkonkursu=" .
-                        $row['idkonkursu']
-                        . "\"><button class=\"lightyellow\">Edytuj kwoty startowe</button></a>";
+                    echo "<a href=\"/~ak438500/skokiBD/kibic/konkurs.php?idkonkursu=" . $row['idkonkursu'] . "\"><button class=\"lightblue\">Zobacz zawody</button></a>";
 
-                        echo "<a href=\"/~ak438500/skokiBD/admin/rozpocznijKonkurs.php?idkonkursu=" .
-                        $row['idkonkursu']
-                        . "\"><button class=\"lightblue\">Rozpocznij zawody</button></a>";
-                    } else {
-                        echo "<a href=\"/~ak438500/skokiBD/admin/konkurs.php?idkonkursu=" .
-                        $row['idkonkursu']
-                        . "\"><button class=\"lightblue\">Edytuj wyniki</button></a>";
-                    }
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -89,7 +68,6 @@
             pg_close($database);
         ?>
     </table>
-    <a href="/~ak438500/skokiBD/admin/nowyKonkurs.php" class="button-a"><button class="newContest">Nowy konkurs</button></a>
 </div>
 
 <?php include('../template/bottom.php'); ?>
