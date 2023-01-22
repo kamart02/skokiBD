@@ -32,7 +32,6 @@
             if ($numrows == 0) {
                 echo "<p>Brak konkursów w bazie danych</p>";
             } else {
-                error_log("numrows: " . $numrows);
                 for ($i = 0; $i < $numrows; $i++) {
                     echo "<tr>";
                     $row = pg_fetch_array($querry, $i);

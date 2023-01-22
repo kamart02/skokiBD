@@ -49,9 +49,7 @@
         $liczbaSkokow = pg_num_rows($skoki);
 
         $konkursZakonczony = true;
-        error_log($liczbaSkokow);
         for ($i = 0; $i < $liczbaSkokow; $i++) {
-            error_log("Konkurs");
             if (pg_field_is_null($skoki, $i, 'ocena') == 1) {
                 $konkursZakonczony = false;
                 break;
@@ -74,7 +72,6 @@
             header("Location: /~ak438500/skokiBD/admin");
             return;
         }
-        error_log("Nie koniec");
 
         header("Location: /~ak438500/skokiBD/admin/rozpocznijKonkurs.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=" . $_GET['seria']);
         return;
@@ -143,10 +140,6 @@
                         } else {
                             $dyskwalifikacja = 'f';
                         }
-                        error_log($dyskwalifikacja);
-                        error_log($idSkoku);
-                        error_log(is_null($dlugoscSkoku) ? 'null' : $dlugoscSkoku);
-                        error_log($ocenaSkoku);
 
                         if ($dyskwalifikacja == 't') {
                             $querry = pg_query_params($database, "UPDATE skok SET dlugosc=NULL, ocena=0, dyskwalifikacja=$1 WHERE idskoku=$2", array($dyskwalifikacja, $idSkoku));

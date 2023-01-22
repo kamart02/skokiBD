@@ -68,7 +68,6 @@
                         } else {
                             $uczestnikQuerry = pg_query_params($database, "SELECT iduczestnika FROM uczestnik WHERE nazwa=$1", array($_SESSION['username']));
                             $_SESSION['iduczestnika'] = pg_fetch_array($uczestnikQuerry)['iduczestnika'];
-                            error_log($_SESSION['iduczestnika']);
                         }
 
                         if (isset($_POST['next'])) {

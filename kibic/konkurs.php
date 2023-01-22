@@ -49,8 +49,7 @@
                 $typSerii = 'druga';
                 $poleSerii = 'seriadruga';
             }
-            error_log($poleSerii);
-            error_log($konkursRow[$poleSerii]);
+
             if (pg_field_is_null($querry, 0, $poleSerii) == 1) {
                 continue;
             }
@@ -67,7 +66,7 @@
                 <th class='width20'>Długość skoku</th>
                 <th class='width20'>Ocena skoku</th>
             </tr>";
-            error_log($_GET['order']);
+
             if (!isset($_GET['order'])){
                 $order = 'numerstartowy';
             } else if ($_GET['order'] == 'nazwisko') {
@@ -80,7 +79,7 @@
                 $order = 'numerstartowy';
             }
 
-            error_log($order);
+
 
             $querryHelper = pg_query_params($database, "SELECT * FROM skok, zgloszenie, uczestnik WHERE skok.idserii=$1 AND skok.idzgloszenia=zgloszenie.idzgloszenia AND zgloszenie.iduczestnika=uczestnik.iduczestnika ORDER BY " . $order, array($idSerii));
             if($querryHelper == false) {
