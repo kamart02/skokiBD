@@ -87,33 +87,34 @@
         else {
             $order = "konkurs.datawydarzenia DESC, seria.typserii";
         }
-
-        $querry = pg_query_params($database, "SELECT * FROM skok, zgloszenie, uczestnik, seria, konkurs WHERE skok.idzgloszenia = zgloszenie.idzgloszenia AND zgloszenie.iduczestnika = uczestnik.iduczestnika AND skok.idserii = seria.idserii AND (seria.idserii = konkurs.seriakwalifikacyjna OR seria.idserii = konkurs.seriapierwsza OR seria.idserii = konkurs.seriadruga) AND uczestnik.iduczestnika = $1 ORDER BY " . $order , array($_GET['iduczestnika']));
-        $numrows = pg_num_rows($querry);
-        if ($_GET['iduczestnika'] == '---') {
-            echo "<p>Nie wybrano zawodnika</p>";
-        }
-        else if ($numrows == 0) {
-            echo "<p>Brak skoków skoczka w bazie danych</p>";
-        } else {
-            for ($i = 0; $i < $numrows; $i++) {
-                echo "<tr>";
-                $row = pg_fetch_array($querry);
-                echo "<td class=\"width20\">" . $row['nazwa'] . " (" . $row['lokalizacja'] . ")" . "</td>";
-                echo "<td class=\"width20\">" . $row['datawydarzenia'] . "</td>";
-                echo "<td class=\"width20\">" . $row['typserii'] . "</td>";
-                if (pg_field_is_null($querry, $i, 'dlugosc') == 0) {
-                    echo "<td class=\"width20\">" . $row['dlugosc'] . "m</td>";
-                } else {
-                    if (pg_field_is_null($querry, $i, 'ocena') == 0) {
-                        echo "<td class=\"width20\"> DNF</td>";
+        if (isset($_GET['iduczestnika'])) {
+            $querry = pg_query_params($database, "SELECT * FROM skok, zgloszenie, uczestnik, seria, konkurs WHERE skok.idzgloszenia = zgloszenie.idzgloszenia AND zgloszenie.iduczestnika = uczestnik.iduczestnika AND skok.idserii = seria.idserii AND (seria.idserii = konkurs.seriakwalifikacyjna OR seria.idserii = konkurs.seriapierwsza OR seria.idserii = konkurs.seriadruga) AND uczestnik.iduczestnika = $1 ORDER BY " . $order , array($_GET['iduczestnika']));
+            $numrows = pg_num_rows($querry);
+            if ($_GET['iduczestnika'] == '---') {
+                echo "<p>Nie wybrano zawodnika</p>";
+            }
+            else if ($numrows == 0) {
+                echo "<p>Brak skoków skoczka w bazie danych</p>";
+            } else {
+                for ($i = 0; $i < $numrows; $i++) {
+                    echo "<tr>";
+                    $row = pg_fetch_array($querry);
+                    echo "<td class=\"width20\">" . $row['nazwa'] . " (" . $row['lokalizacja'] . ")" . "</td>";
+                    echo "<td class=\"width20\">" . $row['datawydarzenia'] . "</td>";
+                    echo "<td class=\"width20\">" . $row['typserii'] . "</td>";
+                    if (pg_field_is_null($querry, $i, 'dlugosc') == 0) {
+                        echo "<td class=\"width20\">" . $row['dlugosc'] . "m</td>";
+                    } else {
+                        if (pg_field_is_null($querry, $i, 'ocena') == 0) {
+                            echo "<td class=\"width20\"> DNF</td>";
+                        }
+                        else {
+                            echo "<td class=\"width20\"></td>";
+                        }
                     }
-                    else {
-                        echo "<td class=\"width20\"></td>";
-                    }
+                    echo "<td class=\"width20\">" . $row['ocena'] . "</td>";
+                    echo "</tr>";
                 }
-                echo "<td class=\"width20\">" . $row['ocena'] . "</td>";
-                echo "</tr>";
             }
         }
         pg_close($database);
