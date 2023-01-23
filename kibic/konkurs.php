@@ -64,7 +64,7 @@
                 <th class='width20'>Imie</th>
                 <th class='width20'>Nazwisko</th>
                 <th class='width20'>Długość skoku</th>
-                <th class='width20'>Ocena skoku</th>
+                <th class='width20'>Punkty za skok</th>
             </tr>";
 
             if (!isset($_GET['order'])){

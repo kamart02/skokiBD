@@ -18,15 +18,12 @@
         if (pg_field_is_null($querry, 0, "seriapierwsza") == 0) {
             pg_close($database);
             header("Location: konkurs.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=pierwsza");
+            return;
         } else {
             pg_close($database);
             header("Location: konkurs.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=kwalifikacyjna");
+            return;
         }
-    }
-
-    $database = pg_connect($DBLOGINSTR);
-    if ($database == false) {
-        die("Database error");
     }
 
     $poleSerii = 'seria' . $_GET['seria'];
@@ -58,12 +55,21 @@
 
         if (!$konkursZakonczony) {
             pg_close($database);
-            if ($_GET['seria'] == 'pierwsza')
+            if ($_GET['seria'] == 'pierwsza') {
+                pg_close($database);
                 header("Location: /~ak438500/skokiBD/admin/koniecKonkursuError.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=" . "kwaliifikacyjna");
-            else if ($_GET['seria'] == 'druga')
+                return;
+            }
+            else if ($_GET['seria'] == 'druga') {
+                pg_close($database);
                 header("Location: /~ak438500/skokiBD/admin/koniecKonkursuError.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=" . "pierwsza");
-            else if ($_GET['seria'] == 'koniec')
+                return;
+            }
+            else if ($_GET['seria'] == 'koniec') {
+                pg_close($database);
                 header("Location: /~ak438500/skokiBD/admin/koniecKonkursuError.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=" . "druga");
+                return;
+            }
             die("Nieprawidłowa kolejnośc serii");
         }
 
@@ -73,6 +79,7 @@
             return;
         }
 
+        pg_close($database);
         header("Location: /~ak438500/skokiBD/admin/rozpocznijKonkurs.php?idkonkursu=" . $_GET['idkonkursu'] . "&seria=" . $_GET['seria']);
         return;
     }
@@ -114,7 +121,7 @@
                 <th class="width20">Numer Startowy</th>
                 <th class="width20">Imie i Nazwisko</th>
                 <th class="width20">Długość skoku</th>
-                <th class="width20">Ocena skoku</th>
+                <th class="width20">Punkty za skok</th>
                 <th class="width20">Dyskwalifikacja</th>
             </tr>
             <?php
