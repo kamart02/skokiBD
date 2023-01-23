@@ -16,6 +16,7 @@
                     <li>
                         <label for="iduczestnika">Imie i nazwisko</label>
                         <select name="iduczestnika">
+                            <option value="---">Wybierz zawodnika</option>
                             <?php
                                 $database = pg_connect($DBLOGINSTR);
                                 if ($database == false) {
@@ -89,7 +90,10 @@
 
         $querry = pg_query_params($database, "SELECT * FROM skok, zgloszenie, uczestnik, seria, konkurs WHERE skok.idzgloszenia = zgloszenie.idzgloszenia AND zgloszenie.iduczestnika = uczestnik.iduczestnika AND skok.idserii = seria.idserii AND (seria.idserii = konkurs.seriakwalifikacyjna OR seria.idserii = konkurs.seriapierwsza OR seria.idserii = konkurs.seriadruga) AND uczestnik.iduczestnika = $1 ORDER BY " . $order , array($_GET['iduczestnika']));
         $numrows = pg_num_rows($querry);
-        if ($numrows == 0) {
+        if ($_GET['iduczestnika'] == '---') {
+            echo "<p>Nie wybrano zawodnika</p>";
+        }
+        else if ($numrows == 0) {
             echo "<p>Brak skoków skoczka w bazie danych</p>";
         } else {
             for ($i = 0; $i < $numrows; $i++) {
